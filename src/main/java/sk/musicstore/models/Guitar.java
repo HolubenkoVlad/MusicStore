@@ -9,16 +9,16 @@ import sk.musicstore.interfaces.IGuitar;
 @Entity
 @Table(name="guitar")
 public class  Guitar extends Product implements IGuitar{
-	private int numberOfStrings;
+	private int number_of_strings;
 	private String material;
 	private String type;
 
 	public void setNumberOfStrings(int numberOfStrings) {
-		this.numberOfStrings=numberOfStrings;
+		this.number_of_strings=numberOfStrings;
 	}
 	
 	public int getNumberOfStrings() {
-		return this.numberOfStrings;
+		return this.number_of_strings;
 	}
 	
 	public void setMaterial(String material) {
@@ -38,7 +38,7 @@ public class  Guitar extends Product implements IGuitar{
 	}
 	
 	public String toString() {
-		return new StringBuilder("Number of strings: ").append(numberOfStrings).
+		return new StringBuilder("Number of strings: ").append(number_of_strings).
 				append("; Material: ").append(material).append("; Type: ").append(type).toString();
 	}
 }

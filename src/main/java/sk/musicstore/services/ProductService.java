@@ -18,9 +18,9 @@ public class ProductService {
 	
 	public List<Product> findAll(){
 		List<Product> listProducts=new ArrayList<Product>();
-		listProducts.addAll(drumService.findAll());
-		listProducts.addAll(guitarService.findAll());
 		listProducts.addAll(synthesizerService.findAll());
+		listProducts.addAll(guitarService.findAll());
+		listProducts.addAll(drumService.findAll());
 		return listProducts;
 	}
 	

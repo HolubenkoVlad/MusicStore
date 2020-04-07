@@ -1,0 +1,17 @@
+html,
+body {
+  height: 100%;
+}
+
+.container-block {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.block {
+  width: 28%;
+  height: 95%;
+  text-align: center;
+}

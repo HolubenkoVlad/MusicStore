@@ -14,6 +14,8 @@ public class DrumService {
 	DrumRepository drumRepository;
 	
 	List<Drum> findAll(){
-		return (List<Drum>)drumRepository.findAll();
+		List<Drum> list=drumRepository.findAll();
+		System.out.println("number of strings: "+list.get(0).getNumberOfDrums());
+		return list;
 	}
 }

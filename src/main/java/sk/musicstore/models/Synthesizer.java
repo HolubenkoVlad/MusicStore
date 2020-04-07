@@ -9,36 +9,36 @@ import sk.musicstore.interfaces.ISynthesizer;
 @Entity
 @Table(name="synthesizer")
 public class Synthesizer extends Product implements ISynthesizer {
-	private int numberOfKeys;
-	private String typeOfKeyboard;
-	private int numberOfTimbres;
+	private int number_of_keys;
+	private String type_of_keyboard;
+	private int number_of_timbres;
 	
 	public void setNumberOfKeys(int numberOfKeys) {
-		this.numberOfKeys=numberOfKeys;
+		this.number_of_keys=numberOfKeys;
 	}
 	
 	public int getNumberOfKeys() {
-		return this.numberOfKeys;
+		return this.number_of_keys;
 	}
 	
 	public void setTypeOfKeyboard(String typeOfKeyboard) {
-		this.typeOfKeyboard=typeOfKeyboard;
+		this.type_of_keyboard=typeOfKeyboard;
 	}
 	
 	public String getTypeOfKeyboard() {
-		return this.typeOfKeyboard;
+		return this.type_of_keyboard;
 	}
 	
 	public void setNumberOfTimbres(int numberOfTimbres) {
-		this.numberOfTimbres=numberOfTimbres;
+		this.number_of_timbres=numberOfTimbres;
 	}
 	
 	public int getNumberOfTimbres() {
-		return this.numberOfTimbres;
+		return this.number_of_timbres;
 	}
 	
 	public String toString() {
-		return new StringBuilder("Number of keys: ").append(numberOfKeys).
-				append("; Type of keyboard: ").append(typeOfKeyboard).append("; Number of timbres: ").append(numberOfTimbres).toString();
+		return new StringBuilder("Number of keys: ").append(number_of_keys).
+				append("; Type of keyboard: ").append(type_of_keyboard).append("; Number of timbres: ").append(number_of_timbres).toString();
 	}
 }

@@ -2,22 +2,23 @@ package sk.musicstore.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
+import javax.persistence.Column;
 import sk.musicstore.interfaces.IDrum;
 
 @Entity
 @Table(name="drum")
 public class Drum extends Product implements IDrum {
-	private int numberOfDrums;
+	@Column(name = "number_of_drums")
+	private int numberOfDrum;
 	private String color;
 	private String size;
 	
 	public void setNumberOfDrums(int numberOfDrums) {
-		this.numberOfDrums=numberOfDrums;
+		this.numberOfDrum=numberOfDrums;
 	}
 	
 	public int getNumberOfDrums() {
-		return this.numberOfDrums;
+		return this.numberOfDrum;
 	}
 	
 	public void setColor(String color) {
@@ -37,7 +38,7 @@ public class Drum extends Product implements IDrum {
 	}
 	
 	public String toString() {
-		return new StringBuilder("Number of drums: ").append(numberOfDrums).
+		return new StringBuilder("Number of drums: ").append(this.numberOfDrum).
 				append("; Color: ").append(color).append("; Size: ").append(size).toString();
 	}
 }

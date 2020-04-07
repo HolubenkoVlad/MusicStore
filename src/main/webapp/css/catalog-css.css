@@ -2,7 +2,7 @@
 
 #catalogblock{
 	margin-left:10%;
-	margin-right:20px;
+	margin-right:10%;
 }
 	
 #catalogblock > li{
@@ -11,7 +11,7 @@
 	border:1px solid black;
 	width:40%;
 	float:left;
-	margin-left:10px;
+	margin-left: 5%;
 	margin-bottom:10px;
 	margin-top:20px;
 }
@@ -34,13 +34,12 @@
 .photoblock{
 	height:196px;
 	float:left;
-	margin-right:15px;
-	border-radius: 7px 0px 0px 7px;
+	margin: 7px 7px 7px 7px;
 }
 	
 .priceblock{
 	font:16px sans-serif;
-	margin-top:7px;
+	margin-top:10px;
 }
 	
 .priceblock strong{
@@ -50,5 +49,13 @@
 
 .featureblock{
 	font:14px/18px sans-serif;
-	margin-top:30px;
+	margin-top:10px;
+}
+
+#centered{
+	text-align: center;
+}
+
+#marginTop{
+  margin-top: 5%;
 }

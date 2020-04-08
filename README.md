@@ -1,4 +1,4 @@
-## MusicStore
+## RockShop
 Projekt bol stvorený s pomocou Spring Boot + Hibernate + MySQL + Bootstrap a použitý MVC pattern.
 ### Ako spustiť?
   1)	Potrebujete uložiť databázu do serveru. Pre tohto spustite script database_v1.sql na MySQL Workbench , alebo MySQL Command Line. Svoj login a heslo do databazu uveďte v src\main\resources\application.properties v 

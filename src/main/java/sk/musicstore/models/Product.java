@@ -55,4 +55,8 @@ public abstract class Product implements IProduct {
 	public String getPhoto() {
 		return this.photo;
 	}
+	@Override
+	public String toString() {
+		return feature;
+	}
 }

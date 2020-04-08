@@ -36,7 +36,7 @@ public class Synthesizer extends Product implements ISynthesizer {
 	public int getNumberOfTimbres() {
 		return this.number_of_timbres;
 	}
-	
+    @Override
 	public String toString() {
 		return new StringBuilder("Number of keys: ").append(number_of_keys).
 				append("; Type of keyboard: ").append(type_of_keyboard).append("; Number of timbres: ").append(number_of_timbres).toString();

@@ -36,7 +36,7 @@ public class Drum extends Product implements IDrum {
 	public String getSize() {
 		return this.size;
 	}
-	
+	@Override
 	public String toString() {
 		return new StringBuilder("Number of drums: ").append(this.numberOfDrum).
 				append("; Color: ").append(color).append("; Size: ").append(size).toString();

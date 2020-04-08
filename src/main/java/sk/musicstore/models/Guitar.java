@@ -36,7 +36,7 @@ public class  Guitar extends Product implements IGuitar{
 	public String getType() {
 		return this.type;
 	}
-	
+	@Override
 	public String toString() {
 		return new StringBuilder("Number of strings: ").append(number_of_strings).
 				append("; Material: ").append(material).append("; Type: ").append(type).toString();

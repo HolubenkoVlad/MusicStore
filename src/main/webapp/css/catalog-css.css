@@ -1,17 +1,17 @@
 @charset "utf-8";
 
 #catalogblock{
-	margin-left:10%;
-	margin-right:10%;
+	text-align: center;
+	margin-left: 2%;
 }
 	
 #catalogblock > li{
 	list-style-type: none;
 	background-color: "aliceblue";
 	border:1px solid black;
-	width:40%;
+	width:45%;
 	float:left;
-	margin-left: 5%;
+	margin-left: 2%;
 	margin-bottom:10px;
 	margin-top:20px;
 }

@@ -50,7 +50,7 @@
 <ul id="catalogblock">
 <c:forEach var="item" items="${product}">
 <li id="list">
-<img src="img/${item.getPhoto()}" width=30% height="196" class="photoblock"/>
+<img src="img/${item.getPhoto()}" width=45% height="196" class="photoblock"/>
 <h5 class="titleblock">${item.getName()}</h5>
 <div class="row" id="marginTop">
 	<div class="col-6">

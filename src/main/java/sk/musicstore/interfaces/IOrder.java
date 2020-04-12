@@ -1,4 +1,4 @@
-/*package sk.musicstore.interfaces;
+package sk.musicstore.interfaces;
 
 import sk.musicstore.models.OrderUser;
 
@@ -10,4 +10,4 @@ public interface IOrder<E extends IProduct> {
 	public float getTotalprice();
 	public void setTotalprice(float totalprice);
 
-}*/
+}

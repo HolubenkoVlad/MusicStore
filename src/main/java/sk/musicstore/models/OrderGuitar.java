@@ -1,4 +1,4 @@
-/*package sk.musicstore.models;
+package sk.musicstore.models;
 
 import sk.musicstore.interfaces.IProduct;
 import javax.persistence.Entity;
@@ -8,13 +8,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name="orderguitar")
+//@Entity
+//@Table(name="orderguitar")
 public class OrderGuitar<E extends Product> extends Order<E> {
 
 	
-	@ManyToOne
-	@JoinColumn(name="id_item")
+	//@ManyToOne
+	//@JoinColumn(name="id_item")
 	private Guitar guitar;
 	
 	public OrderGuitar() {super();}
@@ -32,4 +32,4 @@ public class OrderGuitar<E extends Product> extends Order<E> {
 	public void setProduct(Guitar guitar) {
 		this.guitar = guitar;
 	}
-}*/
+}

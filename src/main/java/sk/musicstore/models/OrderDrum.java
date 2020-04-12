@@ -1,4 +1,4 @@
-/*package sk.musicstore.models;
+package sk.musicstore.models;
 
 import sk.musicstore.interfaces.IProduct;
 import javax.persistence.Entity;
@@ -7,13 +7,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="orderdrum")
+//@Entity
+//@Table(name="orderdrum")
 public class OrderDrum<E extends Product> extends Order<E> {
 	
 	
-	@ManyToOne(targetEntity=Drum.class)
-	@JoinColumn(name="id_item")
+	//@ManyToOne(targetEntity=Drum.class)
+	//@JoinColumn(name="id_item")
 	private Drum drum;
 	
 	public OrderDrum() {}
@@ -32,4 +32,4 @@ public class OrderDrum<E extends Product> extends Order<E> {
 		this.drum = drum;
 	}
 
-}*/
+}

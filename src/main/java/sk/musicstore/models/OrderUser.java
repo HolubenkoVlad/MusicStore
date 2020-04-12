@@ -1,4 +1,4 @@
-/*package sk.musicstore.models;
+package sk.musicstore.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,19 +14,19 @@ import javax.persistence.Table;
 
 import sk.musicstore.interfaces.IProduct;
 
-@Entity
-@Table(name="orderusers")
+//@Entity
+//@Table(name="orderusers")
 public class OrderUser<E extends IProduct> {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@Id
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "id_user")
+	//@Column(name = "id_user")
 	private int loginId;
 	private String card;
 	private String address;
 	
-	@OneToMany(mappedBy="order",cascade=CascadeType.PERSIST, targetEntity=Product.class)
+	//@OneToMany(mappedBy="order",cascade=CascadeType.PERSIST, targetEntity=Product.class)
 	private List<E> list=new ArrayList<E>();
 
 	public OrderUser(int id, String card, String address, List<E> list) {
@@ -92,4 +92,4 @@ public class OrderUser<E extends IProduct> {
 		return items;
 	}*/
 
-//}
+}

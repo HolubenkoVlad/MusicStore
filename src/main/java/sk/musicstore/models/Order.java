@@ -1,4 +1,4 @@
-/*package sk.musicstore.models;
+package sk.musicstore.models;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -17,13 +17,13 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Entity
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Order<E extends IProduct> implements IOrder<E>{
-	@Id
+	//@Id
 	private int id;
-	@ManyToOne(targetEntity=Product.class)
-	@JoinColumn(name="id_order")
+	//@ManyToOne(targetEntity=Product.class)
+	//@JoinColumn(name="id_order")
 	private OrderUser<E> order;
 	
 	private int count=0;
@@ -67,4 +67,4 @@ public abstract class Order<E extends IProduct> implements IOrder<E>{
 	}
 
 
-}*/
+}

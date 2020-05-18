@@ -15,7 +15,7 @@ public class SynthesizerService {
 	@Autowired
 	SynthesizerRepository synthesizerRepository;
 	
-	List<Synthesizer> findAll(){
+	public List<Synthesizer> findAll(){
 		return (List<Synthesizer>)synthesizerRepository.findAll();
 	}
 	

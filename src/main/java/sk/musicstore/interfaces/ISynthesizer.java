@@ -7,4 +7,7 @@ public interface ISynthesizer extends IProduct {
 	public String getTypeOfKeyboard();
 	public void setNumberOfTimbres(int numberOfTimbres);
 	public int getNumberOfTimbres();
+	public default String getInsType() {
+		return "synthesizer";
+	}
 }

@@ -48,3 +48,8 @@ body {
   margin-right: 20px;
   font-size: 1.2em;
 }
+
+#adminButtons{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

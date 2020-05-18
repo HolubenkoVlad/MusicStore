@@ -7,4 +7,7 @@ public interface IGuitar extends IProduct {
 	public String getMaterial();
 	public void setType(String type);
 	public String getType();
+	public default String getInsType() {
+		return "guitar";
+	}
 }

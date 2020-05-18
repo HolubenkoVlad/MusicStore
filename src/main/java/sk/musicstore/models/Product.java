@@ -75,8 +75,5 @@ public abstract class Product implements IProduct, Serializable {
 	public int hashCode() {
 		return Objects.hash(id, name, feature, price);
 	}
-	
-	public String getInsType() {
-		return "product";
-	}
+
 }

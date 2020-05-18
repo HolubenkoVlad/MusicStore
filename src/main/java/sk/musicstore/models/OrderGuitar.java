@@ -15,18 +15,18 @@ public class OrderGuitar extends Order {
 	@Id
 	@ManyToOne
 	@JoinColumn(name="id_order")
-	private OrderUserGuitar order;
+	private OrderUserGuitar<OrderGuitar> order;
 
 	@Id
 	@ManyToOne
 	@JoinColumn(name="id_item")
 	private Guitar guitar;
 	
-	public OrderUserGuitar getOrder() {
+	public OrderUserGuitar<OrderGuitar> getOrder() {
 		return order;
 	}
 
-	public void setOrder(OrderUserGuitar order) {
+	public void setOrder(OrderUserGuitar<OrderGuitar> order) {
 		this.order = order;
 	}
 

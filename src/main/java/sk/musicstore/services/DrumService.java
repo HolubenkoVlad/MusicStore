@@ -13,7 +13,7 @@ public class DrumService {
 	@Autowired
 	DrumRepository drumRepository;
 	
-	List<Drum> findAll(){
+	public List<Drum> findAll(){
 		List<Drum> list=drumRepository.findAll();
 		System.out.println("number of strings: "+list.get(0).getNumberOfDrums());
 		return list;

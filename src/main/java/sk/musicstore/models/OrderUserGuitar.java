@@ -10,11 +10,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="orderusers")
-public class OrderUserGuitar extends OrderUser{
-	@OneToMany(mappedBy="order",cascade=CascadeType.PERSIST)
-	private List<OrderGuitar> list=new ArrayList<OrderGuitar>();
+public class OrderUserGuitar<T> extends OrderUser{
+	@OneToMany(mappedBy="order",cascade=CascadeType.PERSIST, targetEntity=OrderGuitar.class)
+	private List<T> list=new ArrayList<T>();
 	
-	public List<OrderGuitar> getList() {
+	public List<T> getList() {
 		return list;
 	}
 	
@@ -22,11 +22,11 @@ public class OrderUserGuitar extends OrderUser{
 		super(id, address);
 	}
 
-	public void setList(List<OrderGuitar> list) {
+	public void setList(List<T> list) {
 		this.list = list;
 	}
 	
-	public void addToList(OrderGuitar orderGuitar) {
+	public void addToList(T orderGuitar) {
 		list.add(orderGuitar);
 	}
 }

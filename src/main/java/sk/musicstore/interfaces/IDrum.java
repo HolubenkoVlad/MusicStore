@@ -7,4 +7,7 @@ public interface IDrum extends IProduct {
 	public String getColor();
 	public void setSize(String size);
 	public String getSize();
+	public default String getInsType() {
+		return "drum";
+	}
 }

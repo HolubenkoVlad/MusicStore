@@ -1,6 +1,5 @@
 package sk.musicstore.models;
 
-import sk.musicstore.interfaces.IProduct;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,14 +13,14 @@ public class OrderDrum extends Order {
 	@Id
 	@ManyToOne
 	@JoinColumn(name="id_order")
-	private OrderUserDrum order;
+	private OrderUserDrum<OrderDrum> order;
 
 
-	public OrderUserDrum getOrder() {
+	public OrderUserDrum<OrderDrum> getOrder() {
 		return order;
 	}
 
-	public void setOrder(OrderUserDrum order) {
+	public void setOrder(OrderUserDrum<OrderDrum> order) {
 		this.order = order;
 	}
 

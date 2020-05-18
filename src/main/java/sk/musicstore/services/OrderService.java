@@ -32,8 +32,8 @@ public class OrderService {
 	OrderUserRepository orderUserRep;
 	
 	public List<OrderUser> add(OrderUser orderUser, Cart cart) {
-		OrderUserDrum orderDrum=new OrderUserDrum(orderUser.getLoginId(),orderUser.getAddress());
-		OrderUserGuitar orderGuitar=new OrderUserGuitar(orderUser.getLoginId(),orderUser.getAddress());
+		OrderUserDrum<OrderDrum> orderDrum=new OrderUserDrum<OrderDrum>(orderUser.getLoginId(),orderUser.getAddress());
+		OrderUserGuitar<OrderGuitar> orderGuitar=new OrderUserGuitar(orderUser.getLoginId(),orderUser.getAddress());
 		OrderUserSynthesizer orderSynthesizer=new OrderUserSynthesizer(orderUser.getLoginId(),orderUser.getAddress());
 		for(Order or : cart.getItems()) {
 			if(or instanceof OrderDrum ) {

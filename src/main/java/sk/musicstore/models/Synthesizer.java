@@ -51,8 +51,5 @@ public class Synthesizer extends Product implements ISynthesizer, Serializable {
 	public int hashCode() {
 		return Objects.hash(number_of_keys, type_of_keyboard, number_of_timbres);
 	}
-	@Override
-	public String getInsType() {
-		return "synthesizer";
-	}
+	
 }

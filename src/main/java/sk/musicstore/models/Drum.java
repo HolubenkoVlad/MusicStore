@@ -52,8 +52,5 @@ public class Drum extends Product implements IDrum, Serializable {
 	public int hashCode() {
 		return Objects.hash(numberOfDrum, color, size);
 	}
-	@Override
-	public String getInsType() {
-		return "drum";
-	}
+	
 }

@@ -51,10 +51,6 @@ public class  Guitar extends Product implements IGuitar, Serializable{
 	public int hashCode() {
 		return Objects.hash(number_of_strings, material, type);
 	}
-	@Override
-	public String getInsType() {
-		return "guitar";
-	}
 }
 
 

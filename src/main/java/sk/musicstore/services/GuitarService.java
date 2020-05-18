@@ -15,7 +15,7 @@ public class GuitarService {
 	@Autowired
 	GuitarRepository guitarRepository;
 	
-	List<Guitar> findAll(){
+	public List<Guitar> findAll(){
 		return (List<Guitar>)guitarRepository.findAll();
 	}
 	

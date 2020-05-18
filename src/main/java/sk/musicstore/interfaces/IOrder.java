@@ -8,5 +8,7 @@ public interface IOrder {
 	public void setCount(int count);
 	public float getTotalprice();
 	public void setTotalprice(float totalprice);
+	public Product getProduct();
+	public void setProduct(Product product);
 
 }

@@ -10,23 +10,23 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="orderusers")
-public class OrderUserDrum extends OrderUser {
-	@OneToMany(mappedBy="order",cascade=CascadeType.PERSIST)
-	private List<OrderDrum> list=new ArrayList<OrderDrum>();
+public class OrderUserDrum<T> extends OrderUser {
+	@OneToMany(mappedBy="order",cascade=CascadeType.PERSIST, targetEntity=OrderDrum.class)
+	private List<T> list=new ArrayList<T>();
 	
 	public OrderUserDrum(int id, String address) {
 		super(id, address);
 	}
 	
-	public List<OrderDrum> getList() {
+	public List<T> getList() {
 		return list;
 	}
 
-	public void setList(List<OrderDrum> list) {
+	public void setList(List<T> list) {
 		this.list = list;
 	}
 	
-	public void addToList(OrderDrum orderDrum) {
+	public void addToList(T orderDrum) {
 		list.add(orderDrum);
 	}
 }

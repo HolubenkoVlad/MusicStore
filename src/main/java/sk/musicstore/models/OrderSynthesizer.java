@@ -51,7 +51,7 @@ public class OrderSynthesizer extends Order{
 		this.order = order;
 	}
 	
-	/*@Override
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -63,6 +63,6 @@ public class OrderSynthesizer extends Order{
     @Override
     public int hashCode() {
         return Objects.hash(order, synthesizer);
-    }*/
+    }
 
 }

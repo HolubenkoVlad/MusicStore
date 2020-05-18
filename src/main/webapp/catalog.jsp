@@ -50,7 +50,7 @@
 <jsp:include page="header.jsp"/>
 <jsp:include page="signin.jsp"/>
 <ul id="catalogblock">
-<c:forEach var="item" items="${product}">
+<c:forEach var="item" items="${product.get()}">
 <li id="list">
 <img src="img/${item.getPhoto()}" width=45% height="196" class="photoblock"/>
 <h5 class="titleblock">${item.getName()}</h5>

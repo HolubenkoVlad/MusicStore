@@ -40,10 +40,15 @@ import sk.musicstore.services.SynthesizerService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @Controller
 @SessionAttributes(value = {"login", "order"})
@@ -62,10 +67,10 @@ public class ItemController {
 	@Autowired
 	private OrderService orderService;
 	
-	
 	@RequestMapping(method = RequestMethod.GET)
-    public String catalog(Model model) {
-		model.addAttribute("product", productService.findAll());
+    public String catalog(Model model) throws InterruptedException, ExecutionException {
+		CompletableFuture<List<Product>> products=productService.findAll();
+		model.addAttribute("product", products);
         return "catalog";
     }
 	

@@ -2,6 +2,7 @@ package sk.musicstore.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,22 +41,22 @@ public class AdminController {
 	Gson gson;
 
 	@RequestMapping(value="/drums.do", method=RequestMethod.GET)
-	 public List<Drum> getDrums() {
-        return drumService.findAll();
+	 public List<Drum> getDrums() throws InterruptedException, ExecutionException {
+        return drumService.findAll().get();
     }
 	
 	@RequestMapping(value="/guitars.do", method=RequestMethod.GET)
-	 public List<Guitar> getGuitars() {
-       return guitarService.findAll();
+	 public List<Guitar> getGuitars() throws InterruptedException, ExecutionException {
+       return guitarService.findAll().get();
    }
 	@RequestMapping(value="/synthesizers.do", method=RequestMethod.GET)
-	 public List<Synthesizer> getSynthesizers() {
-      return synthesizerService.findAll();
+	 public List<Synthesizer> getSynthesizers() throws InterruptedException, ExecutionException {
+      return synthesizerService.findAll().get();
   }
 	
 	@RequestMapping(value="/users.do", method=RequestMethod.GET)
-	 public List<User> getUsers() {
-     return userService.findAll();
+	 public List<User> getUsers() throws InterruptedException, ExecutionException {
+     return userService.findAll().get();
  }
 	
 	/*@RequestMapping(value="/items/{itemId}.do", method=RequestMethod.GET)

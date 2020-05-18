@@ -1,6 +1,13 @@
 package sk.musicstore.models;
 
 import javax.persistence.MappedSuperclass;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +18,11 @@ import javax.persistence.InheritanceType;
 import sk.musicstore.interfaces.IProduct;
 
 @MappedSuperclass
-public abstract class Product implements IProduct {
+//@Entity
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@DiscriminatorColumn(name = "prod_type",
+//	    discriminatorType = DiscriminatorType.INTEGER)
+public abstract class Product implements IProduct, Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -58,5 +69,14 @@ public abstract class Product implements IProduct {
 	@Override
 	public String toString() {
 		return feature;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, feature, price);
+	}
+	
+	public String getInsType() {
+		return "product";
 	}
 }

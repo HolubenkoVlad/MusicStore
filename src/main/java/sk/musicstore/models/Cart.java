@@ -1,13 +1,27 @@
 package sk.musicstore.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
-	public List<Order> list=new ArrayList<Order>();
+public class Cart implements Serializable{
+	float totalPrice;
+	
+	public float getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice += totalPrice;
+	}
+
+	List<Order> list=new ArrayList<Order>();
+	
+	
 	
 	public void add(Order order) {
         list.add(order);
+        this.totalPrice+=order.getTotalprice();
     }
 
     public List<Order> getItems(){
@@ -23,6 +37,7 @@ public class Cart {
     }
 
     public void remove(int pos) {
+    	this.totalPrice-=list.get(pos).getTotalprice();
         list.remove(pos);
     }
 

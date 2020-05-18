@@ -2,6 +2,8 @@ package sk.musicstore.services;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.ui.Model;
+
 import sk.musicstore.models.*;
 
 
@@ -35,7 +37,7 @@ public class SessionUtils {
         return loginedUser;
     }
     
-    /*public static Cart getCart(HttpSession session){
+    public static Cart getCart(HttpSession session){
         Cart cart;
         if (session.getAttribute("Cart") == null) {
             cart = new Cart();
@@ -45,9 +47,14 @@ public class SessionUtils {
         }
         return cart;
     }
+    
+    public static void storeCart(Cart cart, HttpSession session){
+    	System.out.println("storeCart in SessionUtils -  " +cart.getCount());
+		session.setAttribute("Cart", cart);
+    }
 
     public static void clearCart(HttpSession session){
         session.setAttribute("Cart", new Cart());
-    }*/
+    }
 }
 

@@ -12,15 +12,34 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/account-css.css">
+<script>
+	function send() {
+      var orderForm   = $('#form').serialize();
+            $.ajax({
+                type: "POST",
+                url: '<c:url value="/add_order.do"></c:url>',
+                data: orderForm,
+                success:function(msg){
+                    const obj = JSON.parse(msg);
+                    if (obj.status) {
+                        window.location.href = '<c:url value="/'+obj.message+'.jsp"></c:url>';                  
+                    } else {
+                        alert(obj.message);
+                    }
+                }
+            });
+}
+</script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
+<jsp:include page="order.jsp"/>
 <div class="container-block">
-  <div class="block">
+  <div class="block" class="align-self-stretch">
   	<div class="row">
   		<div class="col-6">
   			<div id="legend">
-     			 <legend class="welcome">Welcome, ${login.get(0).getSurname()}</legend>
+     			 <legend class="welcome">Welcome, ${login.getSurname()}</legend>
             </div>
   		</div>
   		<div class="col">
@@ -34,28 +53,37 @@
      </c:when>
     <c:otherwise>
     <h3 id="casth">Cart</h3>
-       <table id="casttable" border="1" cellpadding="10px">
-<tr class="headers">
-	<td>N</td>
-    <td>id</td>
-    <td>Name</td>
-    <td>Feature</td>
-    <td>Price, &euro;</td>
-    <td>Quantity</td>
-      <td></td>
-</tr>
-<c:forEach var="cart" items="${Cart.getItems()}" varStatus="status">
+    <div class="w-100 p-3" class="text-center">
+    	 <table id="productsTable" class="table" border="1" cellpadding="10px">
+       	<thead class="thead-light">
     <tr>
-    	<td>${status.index+1}</td>
-    	<td>${cart.getItem().getId()}</td>
-  		<td>${cart.getItem().getName()}</td>
-  		<td>${cart.getItem().getFeature()}</td>
-  		<td>${cart.getTotalprice()}</td>
-  		<!--<td><input size="2" id="quen" value="${cart.getCount()}" type="number" onchange="<c:url value="/ChangeQuentity?nomer=${status.index}&quentity=${cart.getCount()}"/>">.</td>-->
-  		<td><a id="deleteitem" href="<c:url value="/remove_from_cart.do?position=${status.index}"/>"></a></td>
+      <th scope="col">#</th>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Feature</th>
+       <th scope="col">Price, &euro;</th>
+       <th scope="col">Quantity</th>
+       <th scope="col"></th>
     </tr>
-</c:forEach>
+  </thead>
+  <tbody>
+  	<c:forEach var="cart" items="${Cart.getItems()}" varStatus="status">
+  	<tr>
+  		<th scope="row">${status.index+1}</th>
+      <td>${cart.getProduct().getId()}</td>
+      <td>${cart.getProduct().getName()}</td>
+      <td>${cart.getProduct().toString()}</td>
+      <td>${cart.getTotalprice()}</td>
+  		<td>${cart.getCount()}</td>
+  		<td><a href="<c:url value="/remove_from_cart.do?position=${status.index}"/>">X</a></td>
+  	</tr>
+  	</c:forEach>
+  </tbody>
 </table>
+    </div>
+<div id="totalPrice"><p class="float-right"><strong>Total price: ${Cart.getTotalPrice()} euro.</strong></p></div>
+<div class="col text-center"><div id="orderButton"><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">&nbsp;&nbsp;&nbsp;Order&nbsp;&nbsp;&nbsp;</button></div></div>
+<div id="eraseCart"><a class="float-right" href="<c:url value="/erase_cart.do"/>"><strong>Erase cart</strong></a></div>
 </c:otherwise>
 </c:choose>
   </div>

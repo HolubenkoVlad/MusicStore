@@ -40,11 +40,11 @@ public class UserController {
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public @ResponseBody String login(@RequestParam String login, @RequestParam String password, Model model){
-		List<User> list=new ArrayList<User>();
+		//List<User> list=new ArrayList<User>();
 		User user=userService.findByLogin(login);
         if (user.getPassword().equals(password)||user.equals(null)) {
-        	list.add(user);
-        	model.addAttribute("login", list);
+        	//list.add(user);
+        	model.addAttribute("login", user);
         	return gson.toJson(new ResponseWrapper(true,"account"));
         } else {
         	return gson.toJson(new ResponseWrapper(false,"Wrong login or password!"));

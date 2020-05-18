@@ -4,15 +4,14 @@ body {
 }
 
 .container-block {
-  height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
 .block {
-  width: 80%;
-  height: 95%;
+  margin-top: 10px;
+  margin-bottom: 5%;
+  width: 85%;
   border-style: solid;
 }
 
@@ -30,4 +29,22 @@ body {
 	margin-top: 10px;
 	margin-right: 10px;
 	float: right;
+}
+
+#casth{
+  margin-left: 10px;
+}
+
+#orderButton{
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+
+#totalPrice{
+  margin-right: 20px;
+}
+
+#eraseCart{
+  margin-right: 20px;
+  font-size: 1.2em;
 }

@@ -1,5 +1,9 @@
 package sk.musicstore.models;
 
+import java.io.Serializable;
+import java.util.Objects;
+
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -8,7 +12,8 @@ import sk.musicstore.interfaces.IGuitar;
 
 @Entity
 @Table(name="guitar")
-public class  Guitar extends Product implements IGuitar{
+//@DiscriminatorValue("2")
+public class  Guitar extends Product implements IGuitar, Serializable{
 	private int number_of_strings;
 	private String material;
 	private String type;
@@ -40,6 +45,15 @@ public class  Guitar extends Product implements IGuitar{
 	public String toString() {
 		return new StringBuilder("Number of strings: ").append(number_of_strings).
 				append("; Material: ").append(material).append("; Type: ").append(type).toString();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(number_of_strings, material, type);
+	}
+	@Override
+	public String getInsType() {
+		return "guitar";
 	}
 }
 

@@ -8,15 +8,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
-//@Entity
-//@Table(name="orderguitar")
-public class OrderGuitar<E extends Product> extends Order<E> {
+@Entity
+@Table(name="orderguitars")
+public class OrderGuitar extends Order {
 
-	
-	//@ManyToOne
-	//@JoinColumn(name="id_item")
+	@Id
+	@ManyToOne
+	@JoinColumn(name="id_order")
+	private OrderUserGuitar order;
+
+	@Id
+	@ManyToOne
+	@JoinColumn(name="id_item")
 	private Guitar guitar;
 	
+	public OrderUserGuitar getOrder() {
+		return order;
+	}
+
+	public void setOrder(OrderUserGuitar order) {
+		this.order = order;
+	}
+
 	public OrderGuitar() {super();}
 	
 	public OrderGuitar(Guitar guitar, int quantity, float totalprice) {

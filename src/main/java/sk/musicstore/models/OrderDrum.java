@@ -7,13 +7,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name="orderdrum")
-public class OrderDrum<E extends Product> extends Order<E> {
+@Entity
+@Table(name="orderdrums")
+public class OrderDrum extends Order {
 	
-	
-	//@ManyToOne(targetEntity=Drum.class)
-	//@JoinColumn(name="id_item")
+	@Id
+	@ManyToOne
+	@JoinColumn(name="id_order")
+	private OrderUserDrum order;
+
+
+	public OrderUserDrum getOrder() {
+		return order;
+	}
+
+	public void setOrder(OrderUserDrum order) {
+		this.order = order;
+	}
+
+	@Id
+	@ManyToOne
+	@JoinColumn(name="id_item")
 	private Drum drum;
 	
 	public OrderDrum() {}

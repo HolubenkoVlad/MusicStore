@@ -18,4 +18,8 @@ public class DrumService {
 		System.out.println("number of strings: "+list.get(0).getNumberOfDrums());
 		return list;
 	}
+	
+	public Drum findById(int id) {
+		return drumRepository.getOne(id);
+	}
 }

@@ -1,5 +1,6 @@
 package sk.musicstore.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,31 +10,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import sk.musicstore.interfaces.IProduct;
 
-//@Entity
-//@Table(name="orderusers")
-public class OrderUser<E extends IProduct> {
-	//@Id
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+@MappedSuperclass
+public class OrderUser implements Serializable {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	//@Column(name = "id_user")
+	@Column(name = "id_user")
 	private int loginId;
-	private String card;
 	private String address;
-	
-	//@OneToMany(mappedBy="order",cascade=CascadeType.PERSIST, targetEntity=Product.class)
-	private List<E> list=new ArrayList<E>();
 
-	public OrderUser(int id, String card, String address, List<E> list) {
+	public OrderUser(int id, String address) {
 		this.loginId=id;
-		this.card=card;
 		this.address=address;
-		this.list=list;
 	}
 	
 	public OrderUser() {
@@ -52,28 +47,12 @@ public class OrderUser<E extends IProduct> {
 		this.loginId = loginid;
 	}
 
-	public String getCard() {
-		return card;
-	}
-
-	public void setCard(String card) {
-		this.card = card;
-	}
-
 	public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public List<E> getList() {
-		return list;
-	}
-
-	public void setList(List<E> list) {
-		this.list = list;
 	}
 	
 	/*public float getTotal() {

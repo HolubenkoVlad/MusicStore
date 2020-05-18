@@ -19,7 +19,7 @@
         <li class="nav-item"> <a data-toggle="modal" href="#exampleModalCenter" class="nav-link">Login</a></li> 
           </c:when>
           <c:otherwise>
-        <li class="nav-item"> <a class="nav-link" href="/account.jsp">${login.get(0).getLogin()}</a></li>
+        <li class="nav-item"> <a class="nav-link" href="/account.jsp">${login.getLogin()}</a></li>
           </c:otherwise>
         </c:choose>
     </ul>

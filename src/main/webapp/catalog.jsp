@@ -31,14 +31,16 @@
 }
 	</script>
 	<script>
-		function addToCart(it_id){
-			var productInCart   = $('#form').serialize();
-            $.ajax({
+		function addToCart(it_id, type_name){
+			$.ajax({
             	type: "POST",
                 url: '<c:url value="/add_to_cart.do"></c:url>',
-                data: productInCart,
+                data: {
+                    id:it_id,
+                    type:type_name
+                },
                 success: function (msg){
-                    alert("Продукт добавлен в корзину");
+                    alert("Product added to cart!");
                 }
             });
 }
@@ -62,7 +64,7 @@
         <button class="btn btn-primary"data-toggle="modal" data-target="#exampleModalCenter">Buy</button>
       </c:when>
       <c:otherwise>
-        <button class="btn btn-primary" onclick="addToCart(${item})">Buy</button>
+        <button class="btn btn-primary" onclick="addToCart(${item.getId()},'${item.getInsType()}')">Buy</button>
       </c:otherwise>
 </c:choose>
     </div>

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import sk.musicstore.models.Guitar;
 
 @Repository
-public interface GuitarRepository extends JpaRepository<Guitar, Long> {
+public interface GuitarRepository extends JpaRepository<Guitar, Integer> {
 }

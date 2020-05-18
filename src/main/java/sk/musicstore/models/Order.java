@@ -1,8 +1,12 @@
 package sk.musicstore.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
@@ -17,15 +21,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
-//@Entity
-//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Order<E extends IProduct> implements IOrder<E>{
-	//@Id
-	private int id;
-	//@ManyToOne(targetEntity=Product.class)
-	//@JoinColumn(name="id_order")
-	private OrderUser<E> order;
-	
+@MappedSuperclass
+public abstract class Order implements IOrder, Serializable{
+
 	private int count=0;
 	@Column(name = "price")
 	private float totalprice=0;
@@ -39,23 +37,17 @@ public abstract class Order<E extends IProduct> implements IOrder<E>{
 		this.count=quantity;
 	}
 	
-	public OrderUser<E> getOrder() {
-		return order;
-	}
-	public void setOrder(OrderUser<E> order) {
-		this.order = order;
-	}
 	public int getCount() {
 		return count;
 	}
 	public void setCount(int count) {
-		this.count = count;
+		this.count += count;
 	}
 	public float getTotalprice() {
 		return totalprice;
 	}
 	public void setTotalprice(float totalprice) {
-		this.totalprice = totalprice;
+		this.totalprice += totalprice;
 	}
 
 	public Product getProduct() {

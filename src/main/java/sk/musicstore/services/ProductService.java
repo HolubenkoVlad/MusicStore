@@ -33,7 +33,7 @@ public class ProductService {
 		CompletableFuture<List<Drum>> drums=drumService.findAll();
 		CompletableFuture<List<Guitar>> guitars=guitarService.findAll();
 		CompletableFuture<List<Synthesizer>> synthesizers=synthesizerService.findAll();
-		CompletableFuture.allOf(drums, guitars, synthesizers);
+		//CompletableFuture.allOf(drums, guitars, synthesizers);
 		listProducts.addAll(synthesizers.get());
 		listProducts.addAll(guitars.get());
 		listProducts.addAll(drums.get());

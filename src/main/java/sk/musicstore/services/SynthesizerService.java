@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import sk.musicstore.models.Drum;
+import sk.musicstore.models.Guitar;
 import sk.musicstore.models.Synthesizer;
 import sk.musicstore.repositories.SynthesizerRepository;
 
@@ -30,5 +31,13 @@ public class SynthesizerService {
 	public Synthesizer findById(int id) {
 		System.out.println("synth id: "+id);
 		return synthesizerRepository.getOne(id);
+	}
+	
+	public void addSynthesizer(Synthesizer synthesizer) throws Exception {
+		synthesizerRepository.save(synthesizer);
+	}
+	
+	public void removeSynthesizer(int id) throws Exception {
+		synthesizerRepository.deleteById(id);
 	}
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import sk.musicstore.models.Drum;
+import sk.musicstore.models.Guitar;
 import sk.musicstore.models.Synthesizer;
 import sk.musicstore.repositories.DrumRepository;
 
@@ -28,5 +29,13 @@ public class DrumService {
 	
 	public Drum findById(int id) {
 		return drumRepository.getOne(id);
+	}
+	
+	public void addDrum(Drum drum) throws Exception {
+		drumRepository.save(drum);
+	}
+	
+	public void removeDrum(int id) throws Exception {
+		drumRepository.deleteById(id);
 	}
 }

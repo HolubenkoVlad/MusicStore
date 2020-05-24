@@ -18,7 +18,6 @@ import sk.musicstore.models.OrderUserSynthesizer;
 import sk.musicstore.repositories.OrderDrumRepository;
 import sk.musicstore.repositories.OrderGuitarRepository;
 import sk.musicstore.repositories.OrderSynthesizerRepository;
-import sk.musicstore.repositories.OrderUserRepository;
 
 @Service
 public class OrderService {
@@ -28,13 +27,11 @@ public class OrderService {
 	OrderGuitarRepository orderGuitarRep;
 	@Autowired
 	OrderSynthesizerRepository orderSynthesizerRep;
-	@Autowired
-	OrderUserRepository orderUserRep;
 	
 	public List<OrderUser> add(OrderUser orderUser, Cart cart) {
 		OrderUserDrum<OrderDrum> orderDrum=new OrderUserDrum<OrderDrum>(orderUser.getLoginId(),orderUser.getAddress());
 		OrderUserGuitar<OrderGuitar> orderGuitar=new OrderUserGuitar(orderUser.getLoginId(),orderUser.getAddress());
-		OrderUserSynthesizer orderSynthesizer=new OrderUserSynthesizer(orderUser.getLoginId(),orderUser.getAddress());
+		OrderUserSynthesizer<OrderSynthesizer> orderSynthesizer=new OrderUserSynthesizer(orderUser.getLoginId(),orderUser.getAddress());
 		for(Order or : cart.getItems()) {
 			if(or instanceof OrderDrum ) {
 				((OrderDrum)or).setOrder(orderDrum);

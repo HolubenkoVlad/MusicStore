@@ -32,4 +32,12 @@ public class GuitarService {
 	public Guitar findById(int id) {
 		return guitarRepository.getOne(id);
 	}
+	
+	public void addGuitar(Guitar guitar) throws Exception {
+		guitarRepository.save(guitar);
+	}
+	
+	public void removeGuitar(int id) throws Exception {
+		guitarRepository.deleteById(id);
+	}
 }

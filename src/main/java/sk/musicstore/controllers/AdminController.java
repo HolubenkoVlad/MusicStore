@@ -5,18 +5,25 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
 import sk.musicstore.models.Drum;
 import sk.musicstore.models.Guitar;
 import sk.musicstore.models.Product;
+import sk.musicstore.models.RegistrationForm;
+import sk.musicstore.models.ResponseWrapper;
 import sk.musicstore.models.Synthesizer;
 import sk.musicstore.models.User;
 import sk.musicstore.services.DrumService;
@@ -59,6 +66,75 @@ public class AdminController {
      return userService.findAll().get();
  }
 	
+	@RequestMapping(value="/addguitar.do", method=RequestMethod.POST)
+	 public @ResponseBody String addGuitar(@ModelAttribute Guitar guitar){
+		try {
+			guitarService.addGuitar(guitar);
+		} catch (Exception e) {
+			return gson.toJson(new ResponseWrapper(true,"No Guitar Added!"));
+		}
+    return gson.toJson(new ResponseWrapper(true,"Guitar added!"));
+}
+	
+	@RequestMapping(value="/adddrum.do", method=RequestMethod.POST)
+	 public @ResponseBody String addDrum(@ModelAttribute Drum drum){
+		try {
+			drumService.addDrum(drum);
+		} catch (Exception e) {
+			return gson.toJson(new ResponseWrapper(true,"No Drum Added!"));
+		}
+   return gson.toJson(new ResponseWrapper(true,"Drum added!"));
+}
+	
+	@RequestMapping(value="/addsynthesizer.do", method=RequestMethod.POST)
+	 public @ResponseBody String addSynthesizer(@ModelAttribute Synthesizer synthesizer){
+		try {
+			synthesizerService.addSynthesizer(synthesizer);
+		} catch (Exception e) {
+			return gson.toJson(new ResponseWrapper(true,"No Synthesizer Added!"));
+		}
+  return gson.toJson(new ResponseWrapper(true,"Synthesizer added!"));
+}
+	
+	@RequestMapping(value="/remove_synthesizer.do", method=RequestMethod.GET)
+	 public ModelAndView removeSynthesizer(@RequestParam Integer position, ModelMap model){
+		try {
+			synthesizerService.removeSynthesizer(position);
+		} catch (Exception e) {
+			System.out.println("Synthesizer not deleted!");
+		}
+		return new ModelAndView("redirect:/account.jsp", model);
+}
+	
+	@RequestMapping(value="/remove_drum.do", method=RequestMethod.GET)
+	 public ModelAndView removeDrum(@RequestParam Integer position, ModelMap model){
+		try {
+			drumService.removeDrum(position);
+		} catch (Exception e) {
+			System.out.println("Drum not deleted!");
+		}
+		return new ModelAndView("redirect:/account.jsp", model);
+}
+	
+	@RequestMapping(value="/remove_guitar.do", method=RequestMethod.GET)
+	 public ModelAndView removeGuitar(@RequestParam Integer position, ModelMap model){
+		try {
+			guitarService.removeGuitar(position);
+		} catch (Exception e) {
+			System.out.println("Guitar not deleted!");
+		}
+		return new ModelAndView("redirect:/account.jsp", model);
+}
+	
+	@RequestMapping(value="/remove_user.do", method=RequestMethod.GET)
+	 public ModelAndView removeUser(@RequestParam Integer position, ModelMap model){
+		try {
+			userService.removeUser(position);
+		} catch (Exception e) {
+			System.out.println("User not deleted!");
+		}
+		return new ModelAndView("redirect:/account.jsp", model);
+}
 	/*@RequestMapping(value="/items/{itemId}.do", method=RequestMethod.GET)
 	 public Item getItemById(@PathVariable int itemId) {
        return itemService.getById(itemId);

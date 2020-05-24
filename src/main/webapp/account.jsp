@@ -13,6 +13,96 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/account-css.css">
 <script>
+
+	$(document).ready(function() { 
+            $('input[type="file"]').change(function(e) { 
+                var photo = e.target.files[0].name; 
+                $("#photoField").val(photo); 
+  				$("#filename").text(photo);
+  				$("#photoField1").val(photo); 
+  				$("#filename1").text(photo);  
+  				$("#photoField2").val(photo); 
+  				$("#filename2").text(photo); 
+            }); 
+        });
+$(document).ready(function() {
+	$('#addGuitar').hide();
+	$('#addDrum').hide();
+	$('#addSynth').hide();
+});
+
+function showAddGuitarFields(){
+	$('#addGuitar').show();
+	$('#addDrum').hide();
+	$('#addSynth').hide();
+		$('#allTables').hide();
+}
+
+function showAddDrumFields(){
+	$('#addDrum').show();
+	$('#addGuitar').hide();
+	$('#addSynth').hide();
+		$('#allTables').hide();
+}
+
+function showAddSynthFields(){
+	$('#addSynth').show();
+	$('#addGuitar').hide();
+	$('#addDrum').hide();
+		$('#allTables').hide();
+}
+
+function hideAddGuitarFields(){
+	$('#addGuitar').hide();
+}
+
+function hideAddDrumFields(){
+	$('#addDrum').hide();
+}
+
+function hideAddSynthFields(){
+	$('#addSynth').hide();
+}
+
+function guitarSender() {
+      var guitarForm   = $('#guitarform').serialize();
+            $.ajax({
+                type: "POST",
+                url: '<c:url value="/api/addguitar.do"></c:url>',
+                data: guitarForm,
+                success:function(msg){
+                    const obj = JSON.parse(msg);
+                        alert(obj.message);
+                }
+            });
+}
+
+function drumSender() {
+      var drumForm   = $('#drumform').serialize();
+            $.ajax({
+                type: "POST",
+                url: '<c:url value="/api/adddrum.do"></c:url>',
+                data: drumForm,
+                success:function(msg){
+                    const obj = JSON.parse(msg);
+                        alert(obj.message);
+                }
+            });
+}
+
+function synthesizerSender() {
+      var synthForm   = $('#synthesizerform').serialize();
+            $.ajax({
+                type: "POST",
+                url: '<c:url value="/api/addsynthesizer.do"></c:url>',
+                data: synthForm,
+                success:function(msg){
+                    const obj = JSON.parse(msg);
+                        alert(obj.message);
+                }
+            });
+}
+
 	function send() {
       var orderForm   = $('#form').serialize();
             $.ajax({
@@ -50,6 +140,9 @@ function hideAllTables(){
 }
 
 function showTable() {
+	$('#addDrum').hide();
+	$('#addGuitar').hide();
+	$('#addSynth').hide();
 	$("#allTables").show();
 	$('#drumTable').empty();
           $.ajax({
@@ -67,7 +160,7 @@ function showTable() {
         		      content += '<th scope="row">' +  item.id + '</th>'+'<td>' +  item.name + '</td>';
         		      content += '<td>' +  item.feature + '</td>'+'<td>' +  item.price + '</td>'+'<td>' +  item.photo + '</td>'+'<td>' +  item.numberOfDrums + '</td>'+'<td>' +  item.color + '</td>'+'<td>' +  item.size + '</td>'
         		      +'<td><button onclick="showEdit('+item.id+')">Edit</button></td>';
-        		      content+='<td><a href="<c:url value="/remove_from_cart.do?position='+item.id+'"/>">X</a></td>';
+        		      content+='<td><a href="<c:url value="/api/remove_drum.do?position='+item.id+'"/>">X</a></td>';
         		      content+='</tr>';
         		      content+='</tbody>';
             	  });
@@ -92,7 +185,7 @@ function showTable() {
         		      content += '<th scope="row">' +  item.id + '</th>'+'<td>' +  item.name + '</td>';
         		      content += '<td>' +  item.feature + '</td>'+'<td>' +  item.price + '</td>'+'<td>' +  item.photo + '</td>'+'<td>' +  item.numberOfStrings + '</td>'+'<td>' +  item.material + '</td>'+'<td>' +  item.type + '</td>'
         		      +'<td><button onclick="showEdit('+item.id+')">Edit</button></td>';
-        		      content+='<td><a href="<c:url value="/remove_from_cart.do?position='+item.id+'"/>">X</a></td>';
+        		      content+='<td><a href="<c:url value="/api/remove_guitar.do?position='+item.id+'"/>">X</a></td>';
         		      content+='</tr>';
         		      content+='</tbody>';
             	  });
@@ -117,7 +210,7 @@ function showTable() {
         		      content += '<th scope="row">' +  item.id + '</th>'+'<td>' +  item.name + '</td>';
         		      content += '<td>' +  item.feature + '</td>'+'<td>' +  item.price + '</td>'+'<td>' +  item.photo + '</td>'+'<td>' +  item.numberOfKeys + '</td>'+'<td>' +  item.typeOfKeyboard + '</td>'+'<td>' +  item.numberOfTimbres + '</td>'
         		      +'<td><button onclick="showEdit('+item.id+')">Edit</button></td>';
-        		      content+='<td><a href="<c:url value="/remove_from_cart.do?position='+item.id+'"/>">X</a></td>';
+        		      content+='<td><a href="<c:url value="/api/remove_synthesizer.do?position='+item.id+'"/>">X</a></td>';
         		      content+='</tr>';
         		      content+='</tbody>';
             	  });
@@ -147,7 +240,7 @@ function showUserTable() {
         			  content+='<tr>';
         		      content += '<th scope="row">' +  item.id + '</th>'+'<td>' +  item.surname + '</td>';
         		      content += '<td>' +  item.email + '</td>'+'<td>' +  item.login + '</td>'+'<td>' +  item.type.name + '</td>' +'<td><button onclick="showEdit('+item.id+')">Edit</button></td>';
-        		      content+='<td><a href="<c:url value="/remove_from_cart.do?position='+item.id+'"/>">X</a></td>';
+        		      content+='<td><a href="<c:url value="/api/remove_user.do?position='+item.id+'"/>">X</a></td>';
         		      content+='</tr>';
         		      content+='</tbody>';
             	  });
@@ -168,16 +261,298 @@ function showUserTable() {
   <c:when test="${login.getType().getName() eq 'admin'}">
   <div id="adminButtons">
   	<div class="col text-center">
-  <button class="btn btn-primary btn-lg" onclick="showAdd()">Add product</button>
-  <button class="btn btn-primary btn-lg" onclick="showTable()">Show products list</button>
-  <button class="btn btn-primary btn-lg" onclick="showUserTable()">Show users list</button>
+  		<div class="row">
+  		<div class="col">
+<div class="dropdown">
+  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Add</button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button class="dropdown-item" onclick="showAddGuitarFields()">Guitar</button>
+    <button class="dropdown-item" onclick="showAddDrumFields()">Drum</button>
+    <button class="dropdown-item" onclick="showAddSynthFields()">Synthesizer</button>
+  </div>
+</div>
+  		</div>
+  		<div class="col">
+<button class="btn btn-primary btn-lg" onclick="showTable()">Show products list</button>
+  		</div>
+  		<div class="col">
+<button class="btn btn-primary btn-lg" onclick="showUserTable()">Show users list</button>
+  		</div>
+  		<div class="col">
+<form action='<c:url value="/logout.do"/>' method="post"><input id="logout" class="btn btn-primary" type="submit" value="Exit"></form>
+  		</div>
+  	</div>
   <div id="allTables">
-  <div id="drumTable"></div>
-  <div id="guitarTable"></div>
-  <div id="synthesizerTable"></div>
-  <div id="hideTables"></div>
+  		<div id="drumTable"></div>
+  		<div id="guitarTable"></div>
+  		<div id="synthesizerTable"></div>
+  		<div id="hideTables"></div>
   </div>
   <div id="userTable"></div>
+  <div id="addGuitar">
+  	<form class="form-horizontal" action="javascript:void(null);" method="post" modelAttribute="guitar" id="guitarform" name="test" onsubmit="guitarSender()">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Add guitar</legend>
+    </div>
+          <div class="col-sm-10">
+          	<div class="form-group row">
+    	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+  </div>
+  <input class="form-control" name="name" type="text" id="name" placeholder="" class="input-xlarge">
+</div> 
+         </div>
+    </div>
+ <div class="form-group row"> 
+          <div class="col-sm-10">
+           <div class="form-group">
+  <label for="comment" class="col-sm-2 col-form-label">Feature:</label>
+  <textarea name="feature" class="form-control" rows="5" id="comment"></textarea>
+</div>
+         </div>
+      </div>
+<div class="form-group row"> 
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+  </div>
+  <input class="form-control" name="price" type="number" id="price" placeholder="" class="input-xlarge">
+</div>
+        </div>
+      </div>  
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group">
+           		<div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01">Photo</span>
+  </div>
+  				<div class="custom-file">
+  				  <input type="file" class="custom-file-input" id="inputGroupFile01"
+  			    aria-describedby="inputGroupFileAddon01">
+  			    <input type="hidden" name="photo" id="photoField">
+  				  <label class="custom-file-label" id="filename" for="inputGroupFile01">Choose file</label>
+  				</div>
+			</div>
+         </div>
+      </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Number of strings</span>
+  </div>
+  <input class="form-control" type="number" id="number_of_strings" name="numberOfStrings" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Material</span>
+  </div>
+  <input class="form-control" type="text" id="material" name="material" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
+  </div>
+  <input class="form-control" type="text" id="type" name="type" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+    <div class="control-group">
+      <div class="controls">
+        <br><div class="col text-center"><input class="btn btn-primary" id="centered" type="submit" name="submit" value="ADD"></div>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<div id="hideGuitar"><a class="float-right" onclick="hideAddGuitarFields()">Hide table</a></div>
+  </div>
+  <div id="addDrum">
+  		<form class="form-horizontal" action="javascript:void(null);" method="post" modelAttribute="drum" id="drumform" name="test" onsubmit="drumSender()">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Add drum</legend>
+    </div>
+          <div class="col-sm-10">
+          	<div class="form-group row">
+    	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+  </div>
+  <input class="form-control" name="name" type="text" id="name" placeholder="" class="input-xlarge">
+</div> 
+         </div>
+    </div>
+ <div class="form-group row"> 
+          <div class="col-sm-10">
+           <div class="form-group">
+  <label for="comment" class="col-sm-2 col-form-label">Feature:</label>
+  <textarea name="feature" class="form-control" rows="5" id="comment"></textarea>
+</div>
+         </div>
+      </div>
+<div class="form-group row"> 
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+  </div>
+  <input class="form-control" name="price" type="number" id="price" placeholder="" class="input-xlarge">
+</div>
+        </div>
+      </div>  
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group">
+           		<div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01">Photo</span>
+  </div>
+  				<div class="custom-file">
+  				  <input type="file" class="custom-file-input" id="inputGroupFile01"
+  			    aria-describedby="inputGroupFileAddon01">
+  			    <input type="hidden" name="photo" id="photoField1">
+  				  <label class="custom-file-label" id="filename1" for="inputGroupFile01">Choose file</label>
+  				</div>
+			</div>
+         </div>
+      </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Number of drums</span>
+  </div>
+  <input class="form-control" type="number" id="number_of_drums" name="numberOfDrums" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Color</span>
+  </div>
+  <input class="form-control" type="text" id="color" name="color" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Size</span>
+  </div>
+  <input class="form-control" type="text" id="size" name="size" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+    <div class="control-group">
+      <div class="controls">
+        <br><div class="col text-center"><input class="btn btn-primary" id="centered" type="submit" name="submit" value="ADD"></div>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<div id="hideGuitar"><a class="float-right" onclick="hideAddDrumFields()">Hide table</a></div>
+  </div>
+  <div id="addSynth">
+  	<form class="form-horizontal" action="javascript:void(null);" method="post" modelAttribute="synthesizer" id="synthesizerform" name="test" onsubmit="synthesizerSender()">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Add synthesizer</legend>
+    </div>
+          <div class="col-sm-10">
+          	<div class="form-group row">
+    	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+  </div>
+  <input class="form-control" name="name" type="text" id="name" placeholder="" class="input-xlarge">
+</div> 
+         </div>
+    </div>
+ <div class="form-group row"> 
+          <div class="col-sm-10">
+           <div class="form-group">
+  <label for="comment" class="col-sm-2 col-form-label">Feature:</label>
+  <textarea name="feature" class="form-control" rows="5" id="comment"></textarea>
+</div>
+         </div>
+      </div>
+<div class="form-group row"> 
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+  </div>
+  <input class="form-control" name="price" type="number" id="price" placeholder="" class="input-xlarge">
+</div>
+        </div>
+      </div>  
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group">
+           		<div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01">Photo</span>
+  </div>
+  				<div class="custom-file">
+  				  <input type="file" class="custom-file-input" id="inputGroupFile01"
+  			    aria-describedby="inputGroupFileAddon01">
+  			    <input type="hidden" name="photo" id="photoField2">
+  				  <label class="custom-file-label" id="filename2" for="inputGroupFile01">Choose file</label>
+  				</div>
+			</div>
+         </div>
+      </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Number of keys</span>
+  </div>
+  <input class="form-control" type="number" id="number_of_keys" name="numberOfKeys" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Type of keyboard</span>
+  </div>
+  <input class="form-control" type="text" id="type_of_keyboard" name="typeOfKeyboard" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+ <div class="form-group row">
+           <div class="col-sm-10">
+           	<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Number of timbres</span>
+  </div>
+  <input class="form-control" type="number" id="type" name="numberOfTimbres" placeholder="" class="input-xlarge">
+</div>
+      		</div>
+ </div>
+    <div class="control-group">
+      <div class="controls">
+        <br><div class="col text-center"><input class="btn btn-primary" id="centered" type="submit" name="submit" value="ADD"></div>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<div id="hideGuitar"><a class="float-right" onclick="hideAddSynthFields()">Hide table</a></div>
+  </div>
   </div>
   </div>
   

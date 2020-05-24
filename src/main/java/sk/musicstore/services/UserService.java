@@ -38,4 +38,8 @@ public class UserService{
 	public void add(User user) {
 		userRepository.saveAndFlush(user);
 	}
+	
+	public void removeUser(int id) throws Exception{
+		userRepository.deleteById(id);
+	}
 }

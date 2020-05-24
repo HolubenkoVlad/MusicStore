@@ -53,7 +53,6 @@ INSERT INTO `synthesizer` (`name`, `price`,`photo`, `number_of_keys`, `type_of_k
 CREATE TABLE `orderusers` (
 `id` int not null auto_increment,
   `id_user` int NOT NULL,
-  `card` varchar(250) NOT NULL,
   `address` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;

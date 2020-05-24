@@ -53,3 +53,15 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+#addGuitar{
+  margin-left: 15%;
+}
+
+#addDrum{
+  margin-left: 15%;
+}
+
+#addSynth{
+  margin-left: 15%;
+}

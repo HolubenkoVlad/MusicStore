@@ -18,7 +18,7 @@ public class OrderSynthesizer extends Order{
 	@Id
 	@ManyToOne
 	@JoinColumn(name="id_order")
-	private OrderUserSynthesizer order;
+	private OrderUserSynthesizer<OrderSynthesizer> order;
 
 	@Id
 	@ManyToOne
@@ -43,11 +43,11 @@ public class OrderSynthesizer extends Order{
 		this.synthesizer = synthesizer;
 	}
 
-	public OrderUserSynthesizer getOrder() {
+	public OrderUserSynthesizer<OrderSynthesizer> getOrder() {
 		return order;
 	}
 
-	public void setOrder(OrderUserSynthesizer order) {
+	public void setOrder(OrderUserSynthesizer<OrderSynthesizer> order) {
 		this.order = order;
 	}
 	

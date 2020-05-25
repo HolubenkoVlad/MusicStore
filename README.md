@@ -12,4 +12,5 @@ Projekt bol stvorený s pomocou Spring Boot + Hibernate + MySQL + Bootstrap a po
 V baliku *repositories* sú triedy, ktoré pracujú z databázou.\
 V baliku *services* sú triedy, ktoré pracujú z triedami repositoriu.\
 V baliku *controllers* sú triedy, ktoré pracujú z triedami servisov.\
- 4) Javadoc je uložená v  doc/sk/musicstore/
+ ### Javadoc
+ Javadoc je uložená v doc/sk/musicstore/

@@ -7,17 +7,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+/**
+ * The class is the essence of the drum order table.
+ * @see javax.persistence.Entity
+ * @see javax.persistence.Table
+ * */
 @Entity
 @Table(name="orderdrums")
 public class OrderDrum extends Order {
-	
+	/**
+	 * The field that refers to the user to which this drum is associated.
+	 * @see javax.persistence.Id
+	 * @see javax.persistence.ManyToOne
+	 * @see javax.persistence.JoinColumn
+	 * */
 	@Id
 	@ManyToOne
 	@JoinColumn(name="id_order")
 	private OrderUserDrum<OrderDrum> order;
 
-
+	
 	public OrderUserDrum<OrderDrum> getOrder() {
 		return order;
 	}
@@ -25,7 +34,11 @@ public class OrderDrum extends Order {
 	public void setOrder(OrderUserDrum<OrderDrum> order) {
 		this.order = order;
 	}
-
+    /**Drum in order
+     * @see javax.persistence.Id
+	 * @see javax.persistence.ManyToOne
+	 * @see javax.persistence.JoinColumn
+     * */
 	@Id
 	@ManyToOne
 	@JoinColumn(name="id_item")
@@ -46,7 +59,7 @@ public class OrderDrum extends Order {
 	public void setProduct(Drum drum) {
 		this.drum = drum;
 	}
-	
+	/**Method for comparing objects*/
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;

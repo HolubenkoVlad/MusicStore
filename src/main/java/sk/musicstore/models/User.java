@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
+/**
+ *	The class is a user record in the user table.
+ * @see javax.persistence.Entity
+ * @see javax.persistence.Table
+ * */
 @Entity
 @Table(name="users")
 public class User implements Serializable{
@@ -24,6 +29,7 @@ public class User implements Serializable{
 	private String email;
 	public  String login;
 	private String password;
+	/**The attribute refers to the object in which the user type is stored.*/
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Type.class)
 	@JoinColumn(name = "id_type")
 	private Type type;

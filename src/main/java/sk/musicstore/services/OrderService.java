@@ -18,7 +18,10 @@ import sk.musicstore.models.OrderUserSynthesizer;
 import sk.musicstore.repositories.OrderDrumRepository;
 import sk.musicstore.repositories.OrderGuitarRepository;
 import sk.musicstore.repositories.OrderSynthesizerRepository;
-
+/**
+ * The class controls the logic of queries to the order user table and order guitar, order drum, order synthesizer in the database.
+ * @see org.springframework.stereotype.Service
+ * */
 @Service
 public class OrderService {
 	@Autowired
@@ -28,6 +31,12 @@ public class OrderService {
 	@Autowired
 	OrderSynthesizerRepository orderSynthesizerRep;
 	
+	/**
+	 * Adds ordered goods to  tables their order types.
+	 * @param orderUser - customer
+	 * @param cart - cart with productss
+	 * @return general list of ordered products with assigned customer
+	 * */
 	public List<OrderUser> add(OrderUser orderUser, Cart cart) {
 		OrderUserDrum<OrderDrum> orderDrum=new OrderUserDrum<OrderDrum>(orderUser.getLoginId(),orderUser.getAddress());
 		OrderUserGuitar<OrderGuitar> orderGuitar=new OrderUserGuitar(orderUser.getLoginId(),orderUser.getAddress());

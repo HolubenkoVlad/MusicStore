@@ -7,19 +7,26 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 
 import sk.musicstore.interfaces.IDrum;
-
+/**
+ * The class is a description of the characteristics of a drum.
+ * @see javax.persistence.Entity
+ * @see javax.persistence.Table
+ * */
 @Entity
 @Table(name="drum")
-//@DiscriminatorValue("1")
 public class Drum extends Product implements IDrum, Serializable {
+	/**
+	 * Number of drums
+	 * @see javax.persistence.Column
+	 * */
 	@Column(name = "number_of_drums")
 	private int numberOfDrum;
+	/**Color*/
 	private String color;
+	/**Size*/
 	private String size;
-	
 	public void setNumberOfDrums(int numberOfDrums) {
 		this.numberOfDrum=numberOfDrums;
 	}
@@ -43,6 +50,9 @@ public class Drum extends Product implements IDrum, Serializable {
 	public String getSize() {
 		return this.size;
 	}
+	/**
+	 * Returns drum characteristics connected in one line.
+	 * */
 	@Override
 	public String toString() {
 		return new StringBuilder("Number of drums: ").append(this.numberOfDrum).

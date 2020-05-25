@@ -3,28 +3,19 @@ package sk.musicstore.models;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.Target;
-
 import sk.musicstore.interfaces.IOrder;
-import sk.musicstore.interfaces.IProduct;
-
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
-
+/**
+ * The class that describes common fields for Entities Orders
+ * @see javax.persistence.MappedSuperclass
+ * */
 @MappedSuperclass
 public abstract class Order implements IOrder, Serializable{
-
+	/**Quantity of products of one type*/
 	private int count=0;
+	/**Total price*/
 	@Column(name = "price")
 	private float totalprice=0;
 	@Transient

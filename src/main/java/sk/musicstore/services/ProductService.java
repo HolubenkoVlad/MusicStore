@@ -15,7 +15,10 @@ import sk.musicstore.models.Drum;
 import sk.musicstore.models.Guitar;
 import sk.musicstore.models.Product;
 import sk.musicstore.models.Synthesizer;
-
+/**
+ * Class for returning a complete list of products from the database
+ * @see org.springframework.stereotype.Service
+ * */
 @Service
 public class ProductService {
 
@@ -26,7 +29,13 @@ public class ProductService {
 	private GuitarService guitarService;
 	@Autowired
 	private SynthesizerService synthesizerService;
-	
+	/**
+	 * Finds all drums, guitars and synthesizers and combines them into one list.
+	 * @return a list of drums from the database
+	 * @see org.springframework.scheduling.annotation.Async
+	 * @throws java.util.concurrent.ExecutionException Thrown when a thread is waiting, sleeping, or otherwise occupied,and the thread is interrupted, either before or during the activity. 
+	 * @throws java.lang.InterruptedException Thrown when a thread is waiting, sleeping, or otherwise occupied,and the thread is interrupted, either before or during the activity. 
+	 * */
 	@Async
 	public CompletableFuture<List<Product>> findAll() throws InterruptedException, ExecutionException{
 		List<Product> listProducts=new ArrayList<Product>();

@@ -9,10 +9,13 @@ import javax.persistence.Table;
 
 import sk.musicstore.interfaces.ISynthesizer;
 
-
+/**
+ * The class is a description of the characteristics of a synthesizer.
+ * @see javax.persistence.Entity
+ * @see javax.persistence.Table
+ * */
 @Entity
 @Table(name="synthesizer")
-//@DiscriminatorValue("3")
 public class Synthesizer extends Product implements ISynthesizer, Serializable {
 	private int number_of_keys;
 	private String type_of_keyboard;
@@ -41,6 +44,9 @@ public class Synthesizer extends Product implements ISynthesizer, Serializable {
 	public int getNumberOfTimbres() {
 		return this.number_of_timbres;
 	}
+	/**
+	 * Returns drum characteristics connected in one line.
+	 * */
     @Override
 	public String toString() {
 		return new StringBuilder("Number of keys: ").append(number_of_keys).

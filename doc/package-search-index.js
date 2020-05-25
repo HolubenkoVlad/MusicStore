@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"sk.musicstore.controllers"},{"l":"sk.musicstore.exceptions"},{"l":"sk.musicstore.interfaces"},{"l":"sk.musicstore.models"},{"l":"sk.musicstore.repositories"},{"l":"sk.musicstore.services"}]

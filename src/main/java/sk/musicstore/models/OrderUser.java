@@ -7,18 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import sk.musicstore.interfaces.IOrderUser;
-
+/**
+ * The class that describes common fields for Entities OrderUsers
+ * @see javax.persistence.MappedSuperclass
+ * */
 @MappedSuperclass
 public class OrderUser implements IOrderUser,Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 835928731566948557L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+	/**user id in the order*/
 	@Column(name = "id_user")
 	private int loginId;
 	private String address;

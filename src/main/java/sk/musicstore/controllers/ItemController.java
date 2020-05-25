@@ -50,37 +50,89 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+/**
+ * ItemController manages requests that relate to products
+ * @see org.springframework.stereotype.Controller
+ * @see org.springframework.web.bind.annotation.SessionAttributes
+ * */
 @Controller
 @SessionAttributes(value = {"login", "order"})
 public class ItemController {
-	
+	/**
+	 * Field where ProductService is injected
+	 * @see org.springframework.beans.factory.annotation.Autowired 
+	 * */
 	@Autowired
 	private ProductService productService;
+	/**
+	 * Field where DrumService is injected
+	 * @see org.springframework.beans.factory.annotation.Autowired 
+	 * */
 	@Autowired
 	private DrumService drumService;
+	/**
+	 * Field where GuitarService is injected
+	 * @see org.springframework.beans.factory.annotation.Autowired 
+	 * */
 	@Autowired
 	private GuitarService guitarService;
+	/**
+	 * Field where SynthesizerService is injected
+	 * @see org.springframework.beans.factory.annotation.Autowired 
+	 * */
 	@Autowired
 	private SynthesizerService synthesizerService;
+	/**
+	 * Field where Gson is injected
+	 * @see org.springframework.beans.factory.annotation.Autowired 
+	 * */
 	@Autowired
-	Gson gson;
+	private Gson gson;
+	/**
+	 * Field where OrderService is injected
+	 * @see org.springframework.beans.factory.annotation.Autowired 
+	 * */
 	@Autowired
 	private OrderService orderService;
 	
+	/**
+	 * Calls a method to get a list of all products
+	 * @param model - used to pass values to render a view
+	 * @return page for open
+	 * @see sk.musicstore.services.ProductService#findAll()
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * @throws java.util.concurrent.ExecutionException Thrown when a thread is waiting, sleeping, or otherwise occupied,and the thread is interrupted, either before or during the activity. 
+	 * @throws java.lang.InterruptedException Thrown when a thread is waiting, sleeping, or otherwise occupied,and the thread is interrupted, either before or during the activity. 
+	 * */
 	@RequestMapping(method = RequestMethod.GET)
     public String catalog(Model model) throws InterruptedException, ExecutionException {
 		CompletableFuture<List<Product>> products=productService.findAll();
 		model.addAttribute("product", products);
         return "catalog";
     }
-	
+	/**
+	 * Method will remove the cart from the session
+	 * @param session - current session
+	 * @return link to redirect
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * */
 	@RequestMapping(value="/erase_cart.do", method=RequestMethod.GET)
 	public String eraseCart(HttpSession session){
 		SessionUtils.clearCart(session);
-		session.setAttribute("totalprice", (float)0);
 		return "redirect:account.jsp";
 	}
 	
+	/**
+	 * Method adds products to cart
+	 * @param id -product id in the table
+	 * @param type - type of product
+	 * @param session - current session
+	 * @return ok, if the addition is successful
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * */
 	@RequestMapping(value="/add_to_cart.do", method=RequestMethod.POST)
 	public @ResponseBody String addToCart(@RequestParam int id,@RequestParam String type, HttpSession session){
 		Order order=null;
@@ -116,6 +168,15 @@ public class ItemController {
         return "ok";
 	}
 	
+	
+	/**
+	 * Method will remove the product from the cart
+	 * @param position - product id in the table
+	 * @param session - current session
+	 * @return link to redirect
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * */
 	@RequestMapping(value="/remove_from_cart.do", method=RequestMethod.GET)
 	public String removeFromCart(@RequestParam Integer position, HttpSession session){
 		Cart cart = SessionUtils.getCart(session);
@@ -123,7 +184,16 @@ public class ItemController {
 	    SessionUtils.storeCart(cart, session);
 		return "redirect:account.jsp";
 	}
-	
+	/**
+	 * The method adds the order to the database.
+	 * @param address -customer address
+	 * @param user - user data from the session
+	 * @param model - used to pass values to render a view
+	 * @param session - current session
+	 * @return page to which the user will be redirected
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * */
 	@RequestMapping(value="/add_order.do", method=RequestMethod.POST)
 	public @ResponseBody String order(@RequestParam String address,
 			@ModelAttribute("login") User user, Model model,HttpSession session) {

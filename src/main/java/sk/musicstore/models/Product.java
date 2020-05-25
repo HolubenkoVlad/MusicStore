@@ -16,12 +16,11 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import sk.musicstore.interfaces.IProduct;
-
+/**
+ * The class that describes common fields for Entities Products
+ * @see javax.persistence.MappedSuperclass
+ * */
 @MappedSuperclass
-//@Entity
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//@DiscriminatorColumn(name = "prod_type",
-//	    discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Product implements IProduct, Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

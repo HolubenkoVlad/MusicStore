@@ -5,38 +5,23 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
 import sk.musicstore.models.*;
-
-
+/**
+ * Helper class for working with the session.
+ * */
 public class SessionUtils {	
-	public static void storeTotalPrice(HttpSession session, Float price) {
-		System.out.println("totalPrice in SessionUtils -  " +price);
-		session.setAttribute("totalprice", price);
-	}
-	
-	public static float getTotalPrice(HttpSession session) {
-		float price=0;
-		System.out.println(session);
-		if(session.getAttribute("totalprice")==null) {
-			System.out.println("Print NULL");
-			session.setAttribute("totalprice", (float)0);
-		}
-		else {
-			System.out.println("Print Tots");
-			price=(Float)session.getAttribute("totalprice");
-		}
-		return price;
-	}
-    
- 
+	/**Adds a user to the session
+	 * @param session - current session
+	 * @param loginedUser - user to add
+	 * */
     public static void storeLoginedUser(HttpSession session, User loginedUser) {
         session.setAttribute("login", loginedUser);
     }
- 
-    public static User getLoginedUser(HttpSession session) {
-        User loginedUser = (User) session.getAttribute("login");
-        return loginedUser;
-    }
-    
+    /**
+     * If the cart is empty when the method is called, a new cart is created and added to the session. 
+     * If the cart exists, a copy of the cart is returned.
+     * @param session - current session
+     * @return cart
+     * */
     public static Cart getCart(HttpSession session){
         Cart cart;
         if (session.getAttribute("Cart") == null) {
@@ -47,12 +32,18 @@ public class SessionUtils {
         }
         return cart;
     }
-    
+    /**
+     * Saves the cart to the session
+     * @param cart - cart to save
+     * @param session - current session- 
+     * */
     public static void storeCart(Cart cart, HttpSession session){
-    	System.out.println("storeCart in SessionUtils -  " +cart.getCount());
 		session.setAttribute("Cart", cart);
     }
-
+    /**
+     * Removing the old cart by replacing the empty one
+     * @param session - current session
+     * */
     public static void clearCart(HttpSession session){
         session.setAttribute("Cart", new Cart());
     }

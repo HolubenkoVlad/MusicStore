@@ -10,16 +10,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
+/**
+ * The class is the essence of the synthesizer order table.
+ * @see javax.persistence.Entity
+ * @see javax.persistence.Table
+ * */
 @Entity
 @Table(name="ordersynthesizers")
 public class OrderSynthesizer extends Order{
-
+	/**
+	 * The field that refers to the user to which this synthesizer is associated.
+	 * @see javax.persistence.Id
+	 * @see javax.persistence.ManyToOne
+	 * @see javax.persistence.JoinColumn
+	 * */
 	@Id
 	@ManyToOne
 	@JoinColumn(name="id_order")
 	private OrderUserSynthesizer<OrderSynthesizer> order;
-
+	 /**Synthesizer in order
+     * @see javax.persistence.Id
+	 * @see javax.persistence.ManyToOne
+	 * @see javax.persistence.JoinColumn
+     * */
 	@Id
 	@ManyToOne
 	@JoinColumn(name="id_item")
@@ -50,7 +63,7 @@ public class OrderSynthesizer extends Order{
 	public void setOrder(OrderUserSynthesizer<OrderSynthesizer> order) {
 		this.order = order;
 	}
-	
+	/**Method for comparing objects*/
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -28,21 +28,39 @@ import sk.musicstore.models.ResponseWrapper;
 import sk.musicstore.models.Type;
 import sk.musicstore.models.User;
 import sk.musicstore.services.UserService;
-
+/**
+ * The class processes requests that are related to the user.
+ * @see org.springframework.stereotype.Controller
+ * @see org.springframework.web.bind.annotation.SessionAttributes
+ * */
 @Controller
 @SessionAttributes(value = {"login", "Cart"})
 public class UserController {
-
+	
+	/**
+	 * Field where UserService is injected
+	 * @see org.springframework.beans.factory.annotation.Autowired 
+	 * */
 	@Autowired
 	UserService userService;
-	
+	/**
+	 * Field where Gson is injected
+	 * @see org.springframework.beans.factory.annotation.Autowired 
+	 * */
 	@Autowired
 	Gson gson;
 	
+	/**
+	 * The method calls the method to find the login in the database and compare the login and password with the entered.
+	 * @param login -user login
+	 * @param password - user password
+	 * @param model - used to pass values to render a view
+	 * @return the result of finding the user in the database
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * */
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public @ResponseBody String login(@RequestParam String login, @RequestParam String password, Model model){
-		//List<User> list=new ArrayList<User>();
-		
 		User user;
 		try {
 			user=userService.findByLogin(login);
@@ -50,7 +68,6 @@ public class UserController {
 			return gson.toJson(new ResponseWrapper(false,ex.getMessage()));
 		}
         if (user.getPassword().equals(password)) {
-        	//list.add(user);
         	model.addAttribute("login", user);
         	return gson.toJson(new ResponseWrapper(true,"account"));
         } else {
@@ -61,10 +78,16 @@ public class UserController {
 	interface RedirectBack{
 	    String redirect(String ref);
 	}
-	
+	/**
+	 * Method removes user from session and redirect to the main page if the request came from the user’s page.
+	 * @param referer - page from which the request came
+	 * @param sessionStatus - session status
+	 * @return the result of finding the user in the database
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * */
 	@RequestMapping(value="/logout.do", method=RequestMethod.POST)
-	public String logout(@RequestHeader("Referer") String referer, SessionStatus sessionStatus, 
-						   @ModelAttribute("login") List<User> user){
+	public String logout(@RequestHeader("Referer") String referer, SessionStatus sessionStatus){
 		sessionStatus.setComplete();
 		RedirectBack redirectBack = (String ref)-> {
 			 if (ref != null && ref.contains("/account")) {
@@ -75,7 +98,14 @@ public class UserController {
 		};
     	return redirectBack.redirect(referer);
 	}
-	
+	/**
+	 * The method will redirect to the page to fill out the registration form and transfer the form object to it
+	 * @param regForm - registration form
+	 * @param model - used to pass values to render a view
+	 * @return page to redirect
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * */
 	@RequestMapping(value="/signup.do", method=RequestMethod.GET)
 	public String registerGet(RegistrationForm regForm, Model model){
 		model.addAttribute("regForm", new RegistrationForm());
@@ -85,7 +115,14 @@ public class UserController {
 	interface CheckRegForm{
 	    String check(RegistrationForm form);
 	}
-	
+	/**
+	 * The method checks if all fields in the registration form are filled. If so, calls the method to register a new user.
+	 * @param regForm - registration form
+	 * @param model - used to pass values to render a view
+	 * @return page to redirect
+	 * @see org.springframework.web.bind.annotation.RequestMapping
+	 * @see org.springframework.web.bind.annotation.RequestMethod
+	 * */
 	@RequestMapping(value="/signup.do", method=RequestMethod.POST)
 	public @ResponseBody String registerPost(Model model, @ModelAttribute RegistrationForm regForm){
 		CheckRegForm checkRegForm=(RegistrationForm form)->{

@@ -7,10 +7,18 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+/**
+ * The class is the essence of the user order table.
+ * @see javax.persistence.Entity
+ * @see javax.persistence.Table
+ * */
 @Entity
 @Table(name="orderusers")
 public class OrderUserGuitar<T> extends OrderUser{
+	/**
+	 * The list of products this user is associated with in the table with guitar orders.
+	 * @see javax.persistence.OneToMany
+	 * */
 	@OneToMany(mappedBy="order",cascade=CascadeType.PERSIST, targetEntity=OrderGuitar.class)
 	private List<T> list=new ArrayList<T>();
 	

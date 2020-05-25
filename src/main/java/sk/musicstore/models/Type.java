@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
-
+/**The class is a user type entry in the user type table*/
 @Entity
 @Table(name="type_of_user")
 public class Type implements Serializable{

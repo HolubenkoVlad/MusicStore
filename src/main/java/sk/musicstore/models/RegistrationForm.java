@@ -1,5 +1,9 @@
 package sk.musicstore.models;
 
+/**
+ * An object of this class is sent to the client to fill out the registration form.
+ * */
+
 public class RegistrationForm {
 	private String surname;
 	private String login;

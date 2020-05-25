@@ -1,0 +1,7 @@
+sk.musicstore
+sk.musicstore.controllers
+sk.musicstore.exceptions
+sk.musicstore.interfaces
+sk.musicstore.models
+sk.musicstore.repositories
+sk.musicstore.services

@@ -9,13 +9,19 @@ import javax.persistence.Table;
 
 import sk.musicstore.interfaces.IGuitar;
 
-
+/**
+ * The class is a description of the characteristics of a guitar.
+ * @see javax.persistence.Entity
+ * @see javax.persistence.Table
+ * */
 @Entity
 @Table(name="guitar")
-//@DiscriminatorValue("2")
 public class  Guitar extends Product implements IGuitar, Serializable{
+	/**Number of strings*/
 	private int number_of_strings;
+	/**Material*/
 	private String material;
+	/**Type*/
 	private String type;
 
 	public void setNumberOfStrings(int numberOfStrings) {
@@ -41,6 +47,10 @@ public class  Guitar extends Product implements IGuitar, Serializable{
 	public String getType() {
 		return this.type;
 	}
+	
+	/**
+	 * Returns guitar characteristics connected in one line.
+	 * */
 	@Override
 	public String toString() {
 		return new StringBuilder("Number of strings: ").append(number_of_strings).
